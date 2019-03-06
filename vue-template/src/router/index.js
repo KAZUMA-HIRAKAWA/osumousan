@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import office from '@/components/officeselect'
-import seat from '@/components/seatselect'
+import ginza from '@/components/seatselectginza'
+import maru from '@/components/seatselectmaru'
 
 Vue.use(Router)
 
@@ -13,9 +14,14 @@ export default new Router({
       component: office
     },
     {
-      path: '/seat',
-      name: 'seat',
-      component: seat
-    }
+      path: '/ginza',
+      name: 'ginza',
+      component: ginza
+    },
+    {
+      path: '/maru',
+      name: 'maru',
+      component: maru
+    },
   ]
 })
