@@ -39,14 +39,6 @@ export default {
   },
   methods: {
     routing: function(page) {
-      axios = axiosBase.create({
-        baseURL:
-          "https://6yf8nnfen1.execute-api.ap-northeast-1.amazonaws.com/test",
-        timeout: 35000,
-        headers: {}
-      });
-
-      // axios.get(`/getposition`);
       this.$router.push(page);
     }
   }
