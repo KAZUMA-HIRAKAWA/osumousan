@@ -1,23 +1,38 @@
 <template>
   <div class="office">
-    <h1>どちらの座席表をみますか？</h1>
+    <h1>希望の座席を選んでください</h1>
     <b-container>
-    <b-row>
-      <b-form-group label="">
-        <b-form-radio-group
-          id="btnradios"
-          buttons
-          button-variant="outline-success"
-          size="lg"
-          v-model="office"
-          :options="options"
-          name="radioBtnOutline"
-          />
-        </b-form-group>
+      <b-row>
+        <b-col>
+          <b-button variant="outline-success" class="btn-circle-flat">1</b-button>
+        </b-col>
+        <b-col>
+          <b-button variant="outline-success" class="btn-circle-flat">2</b-button>
+        </b-col>
+        <b-col>
+          <b-button variant="outline-success" class="btn-circle-flat">3</b-button>
+        </b-col>
+        <b-col>
+          <b-button variant="outline-success" class="btn-circle-flat">4</b-button>
+        </b-col>
+      </b-row>
+      <b-row class="desk">
+        <b-col col>机</b-col>
       </b-row>
       <b-row>
-    <b-button variant="right">Button</b-button>
-    </b-row>
+        <b-col>
+          <b-button variant="outline-success" class="btn-circle-flat" disabled>5</b-button>
+        </b-col>
+        <b-col>
+          <b-button variant="outline-success" class="btn-circle-flat" disabled>6</b-button>
+        </b-col>
+        <b-col>
+          <b-button variant="outline-success" class="btn-circle-flat" disabled>7</b-button>
+        </b-col>
+        <b-col>
+          <b-button variant="outline-success" class="btn-circle-flat" disabled>8</b-button>
+        </b-col>
+      </b-row>
     </b-container>
   </div>
 </template>
@@ -29,10 +44,6 @@ export default {
     return {
       seat: '',
       office: '',
-      options: [
-          { text: '銀座', value: 'ginza' },
-          { text: '丸ノ内', value: 'maru' }
-        ]
     }
   },
   methods: {
@@ -51,5 +62,22 @@ h1, h2 {
 
 #btnradios{
   margin-top: 45px;
+}
+
+.btn-circle-flat {
+  display: inline-block;
+  text-decoration: none;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+  transition: .4s;
+}
+
+.desk{
+  border: solid 2px #a08d70
 }
 </style>
