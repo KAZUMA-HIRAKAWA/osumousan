@@ -2,6 +2,7 @@
   <div class="office">
     <h1>どちらの座席表をみますか？</h1>
     <b-container>
+    <b-row>
       <b-form-group label="">
         <b-form-radio-group
           id="btnradios"
@@ -13,9 +14,10 @@
           name="radioBtnOutline"
           />
         </b-form-group>
-        </b-container>
-        <b-container>
-    <b-button variant="right" size="lg" v-on:click="routing('/seat')"><font-awesome-icon icon="hand-point-right" /></b-button>
+      </b-row>
+      <b-row>
+    <b-button variant="right">Button</b-button>
+    </b-row>
     </b-container>
   </div>
 </template>
