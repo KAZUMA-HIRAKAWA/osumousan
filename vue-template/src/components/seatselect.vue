@@ -4,16 +4,16 @@
     <b-container>
       <b-row>
         <b-col>
-          <b-button variant="outline-success" class="btn-circle-flat">1</b-button>
+          <b-button variant="outline-success" v-on:click="addseat('1')" class="btn-circle-flat">1</b-button>
         </b-col>
         <b-col>
-          <b-button variant="outline-success" class="btn-circle-flat">2</b-button>
+          <b-button variant="outline-success" v-on:click="addseat('2')" class="btn-circle-flat">2</b-button>
         </b-col>
         <b-col>
-          <b-button variant="outline-success" class="btn-circle-flat">3</b-button>
+          <b-button variant="outline-success" v-on:click="addseat('3')" class="btn-circle-flat">3</b-button>
         </b-col>
         <b-col>
-          <b-button variant="outline-success" class="btn-circle-flat">4</b-button>
+          <b-button variant="outline-success" v-on:click="addseat('4')" class="btn-circle-flat">4</b-button>
         </b-col>
       </b-row>
       <b-row class="desk">
@@ -42,11 +42,34 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      seat: '',
+      seat: [],
       office: '',
+      apigateway: 'https://6yf8nnfen1.execute-api.ap-northeast-1.amazonaws.com/test/reservePosition'
     }
   },
   methods: {
+    addseat: async function(select) {
+      let that=this
+      let today=new Date()
+      let year=today.getFullYear()
+      let month = ("0"+(today.getMonth() + 1)).slice(-2)
+      let date =  ("0"+today.getDate()).slice(-2)
+      let seat = year + month + date + select
+      axios
+        .post(
+          this.apigateway,
+          {
+            seat: seat
+          },
+        )
+        .then(async function(response) {
+          /*selectを会話上に返したい*/
+          liff.closewindow()
+
+        })
+        .catch(error => {
+      
+    },
     routing: function(page) {
       this.$router.push(page)
     }
