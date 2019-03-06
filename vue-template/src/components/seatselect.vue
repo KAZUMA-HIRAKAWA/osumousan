@@ -4,28 +4,48 @@
     <b-container>
       <b-row>
         <b-col v-if="seat1">
-          <b-button variant="outline-success" class="btn-circle-flat">1</b-button>
+          <b-button variant="outline-success" v-on:click="addseat('1')" class="btn-circle-flat">1</b-button>
         </b-col>
         <b-col v-else>
-          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>1</b-button>
+          <b-button
+            variant="outline-success"
+            v-on:click="addseat('1')"
+            class="btn-circle-flat reserved"
+            disabled
+          >1</b-button>
         </b-col>
         <b-col v-if="seat2">
-          <b-button variant="outline-success" class="btn-circle-flat">2</b-button>
+          <b-button variant="outline-success" v-on:click="addseat('2')" class="btn-circle-flat">2</b-button>
         </b-col>
         <b-col v-else>
-          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>2</b-button>
+          <b-button
+            variant="outline-success"
+            v-on:click="addseat('2')"
+            class="btn-circle-flat reserved"
+            disabled
+          >2</b-button>
         </b-col>
         <b-col v-if="seat3">
-          <b-button variant="outline-success" class="btn-circle-flat">3</b-button>
+          <b-button variant="outline-success" v-on:click="addseat('3')" class="btn-circle-flat">3</b-button>
         </b-col>
         <b-col v-else>
-          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>3</b-button>
+          <b-button
+            variant="outline-success"
+            v-on:click="addseat('3')"
+            class="btn-circle-flat reserved"
+            disabled
+          >3</b-button>
         </b-col>
         <b-col v-if="seat4">
-          <b-button variant="outline-success" class="btn-circle-flat">4</b-button>
+          <b-button variant="outline-success" v-on:click="addseat('4')" class="btn-circle-flat">4</b-button>
         </b-col>
         <b-col v-else>
-          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>4</b-button>
+          <b-button
+            variant="outline-success"
+            v-on:click="addseat('4')"
+            class="btn-circle-flat reserved"
+            disabled
+          >4</b-button>
         </b-col>
       </b-row>
       <b-row class="desk">
@@ -62,7 +82,7 @@ export default {
       seat3: "",
       seat4: "",
       office: "",
-      data:""
+      data: ""
     };
   },
   mounted() {
@@ -76,23 +96,17 @@ export default {
     const data = axios.post(`/getposition`);
     this.data = data;
 
-    data.forEach(function(value){
-      if(value.date_position.split('_')[1] === '1'){
+    data.forEach(function(value) {
+      if (value.date_position.split("_")[1] === "1") {
         this.seat1 = value;
-      }else if(value.date_position.split('_')[1] === '2'){
+      } else if (value.date_position.split("_")[1] === "2") {
         this.seat2 = value;
-      }else if(value.date_position.split('_')[1] === '3'){
+      } else if (value.date_position.split("_")[1] === "3") {
         this.seat3 = value;
-      }else if(value.date_position.split('_')[1] === '4'){
+      } else if (value.date_position.split("_")[1] === "4") {
         this.seat4 = value;
       }
     });
-
-  },
-  methods: {
-    routing: function(page) {
-      this.$router.push(page);
-    }
   }
 };
 </script>
@@ -121,8 +135,8 @@ h2 {
   transition: 0.4s;
 }
 
-.reserved{
-  background-color: #C0C0C0;
+.reserved {
+  background-color: #c0c0c0;
 }
 
 .desk {
