@@ -2,7 +2,7 @@
   <div class="office">
     <h1>どちらの座席表をみますか？</h1>
     <b-container>
-      <b-form-group label="">
+      <b-form-group label>
         <b-form-radio-group
           id="btnradios"
           buttons
@@ -11,43 +11,56 @@
           v-model="office"
           :options="options"
           name="radioBtnOutline"
-          />
-        </b-form-group>
-        </b-container>
-        <b-container>
-    <b-button variant="right" size="lg" v-on:click="routing('/seat')"><font-awesome-icon icon="hand-point-right" /></b-button>
+        />
+      </b-form-group>
+    </b-container>
+    <b-container>
+      <b-button variant="right" size="lg" v-on:click="routing('/seat')">
+        <font-awesome-icon icon="hand-point-right"/>
+      </b-button>
     </b-container>
   </div>
 </template>
 
 <script>
+import axiosBase from "axios";
+let axios;
 export default {
-  name: 'HelloWorld',
-  data () {
+  name: "HelloWorld",
+  data() {
     return {
-      seat: '',
-      office: '',
+      seat: "",
+      office: "",
       options: [
-          { text: '銀座', value: 'ginza' },
-          { text: '丸ノ内', value: 'maru' }
-        ]
-    }
+        { text: "銀座", value: "ginza" },
+        { text: "丸ノ内", value: "maru" }
+      ]
+    };
   },
   methods: {
     routing: function(page) {
-      this.$router.push(page)
+      axios = axiosBase.create({
+        baseURL:
+          "https://6yf8nnfen1.execute-api.ap-northeast-1.amazonaws.com/test",
+        timeout: 35000,
+        headers: {}
+      });
+
+      // axios.get(`/getposition`);
+      this.$router.push(page);
     }
-  },
-}
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 
-#btnradios{
+#btnradios {
   margin-top: 45px;
 }
 </style>
