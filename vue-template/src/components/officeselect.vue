@@ -15,7 +15,7 @@
       </b-form-group>
     </b-container>
     <b-container>
-      <b-button variant="right" size="lg" v-on:click="routing('/seat')">
+      <b-button variant="right" size="lg" v-on:click="routing()">
         <font-awesome-icon icon="hand-point-right"/>
       </b-button>
     </b-container>
@@ -38,8 +38,12 @@ export default {
     };
   },
   methods: {
-    routing: function(page) {
-      this.$router.push(page);
+    routing: function() {
+      if(this.$data.office=='ginza'){
+      this.$router.push('/ginza');
+      }else if(this.$data.office==='maru'){
+        this.$router.push('/maru');
+      }
     }
   }
 };
