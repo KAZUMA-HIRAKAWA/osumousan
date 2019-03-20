@@ -4,48 +4,28 @@
     <b-container>
       <b-row>
         <b-col v-if="seat1">
-          <b-button variant="outline-success" v-on:click="addseat('1')" class="btn-circle-flat">1</b-button>
+          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>1</b-button>
         </b-col>
         <b-col v-else>
-          <b-button
-            variant="outline-success"
-            v-on:click="addseat('1')"
-            class="btn-circle-flat reserved"
-            disabled
-          >1</b-button>
+          <b-button variant="outline-success" v-on:click="addSeat('1')" class="btn-circle-flat">1</b-button>
         </b-col>
         <b-col v-if="seat2">
-          <b-button variant="outline-success" v-on:click="addseat('2')" class="btn-circle-flat">2</b-button>
+          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>2</b-button>
         </b-col>
         <b-col v-else>
-          <b-button
-            variant="outline-success"
-            v-on:click="addseat('2')"
-            class="btn-circle-flat reserved"
-            disabled
-          >2</b-button>
+          <b-button variant="outline-success" v-on:click="addSeat('2')" class="btn-circle-flat">2</b-button>
         </b-col>
         <b-col v-if="seat3">
-          <b-button variant="outline-success" v-on:click="addseat('3')" class="btn-circle-flat">3</b-button>
+          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>3</b-button>
         </b-col>
         <b-col v-else>
-          <b-button
-            variant="outline-success"
-            v-on:click="addseat('3')"
-            class="btn-circle-flat reserved"
-            disabled
-          >3</b-button>
+          <b-button variant="outline-success" v-on:click="addSeat('3')" class="btn-circle-flat">3</b-button>
         </b-col>
         <b-col v-if="seat4">
-          <b-button variant="outline-success" v-on:click="addseat('4')" class="btn-circle-flat">4</b-button>
+          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>4</b-button>
         </b-col>
         <b-col v-else>
-          <b-button
-            variant="outline-success"
-            v-on:click="addseat('4')"
-            class="btn-circle-flat reserved"
-            disabled
-          >4</b-button>
+          <b-button variant="outline-success" v-on:click="addSeat('4')" class="btn-circle-flat">4</b-button>
         </b-col>
       </b-row>
       <b-row class="desk">
@@ -71,42 +51,58 @@
 
 <script>
 import axiosBase from "axios";
+import { constants } from 'fs';
 let axios;
 
 export default {
   name: "HelloWorld",
+  headers: {
+    "Content-Type": "application/json;charset=UTF-8",
+    "Access-Control-Allow-Origin": "*"
+  },
   data() {
     return {
       seat1: "",
       seat2: "",
       seat3: "",
       seat4: "",
-      office: "",
-      data: ""
     };
   },
-  mounted() {
+  async mounted() {
     axios = axiosBase.create({
       baseURL:
-        "https://6yf8nnfen1.execute-api.ap-northeast-1.amazonaws.com/test",
+        "https://3k020kklx6.execute-api.ap-northeast-1.amazonaws.com/test",
       timeout: 35000,
       headers: {}
     });
 
-    const data = axios.post(`/getposition`);
-    this.data = data;
+    const params = await axios.get(`/`);
 
-    data.forEach(function(value) {
-      if (value.date_position.split("_")[1] === "1") {
-        this.seat1 = value;
-      } else if (value.date_position.split("_")[1] === "2") {
-        this.seat2 = value;
-      } else if (value.date_position.split("_")[1] === "3") {
-        this.seat3 = value;
-      } else if (value.date_position.split("_")[1] === "4") {
-        this.seat4 = value;
+    let seat1;
+    let seat2;
+    let seat3;
+    let seat4;
+
+    params.data.Items.forEach(function(value) {
+      if (value.date_position.split('_')[1] === "1") {
+        seat1 = value;
+      } else if (value.date_position.split('_')[1] === "2") {
+        seat2 = value;
+      } else if (value.date_position.split('_')[1] === "3") {
+        seat3 = value;
+      } else if (value.date_position.split('_')[1] === "4") {
+        seat4 = value;
       }
     });
+
+    this.seat1 = seat1;
+    this.seat2 = seat2;
+    this.seat3 = seat3;
+    this.seat4 = seat4;
+    console.log('seat1',this.seat1,'seat4',this.seat4);
+  },
+  addSeat(position){
+    alert('座席を予約しますか？');
   }
 };
 </script>
@@ -136,7 +132,8 @@ h2 {
 }
 
 .reserved {
-  background-color: #c0c0c0;
+  color: white;
+  background-color: blue;
 }
 
 .desk {
