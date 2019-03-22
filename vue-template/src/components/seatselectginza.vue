@@ -7,25 +7,25 @@
           <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>1</b-button>
         </b-col>
         <b-col v-else>
-          <b-button variant="outline-success" v-on:click="addSeat('1')" class="btn-circle-flat">1</b-button>
+          <b-button variant="outline-success" @click="addSeat('1')" class="btn-circle-flat">1</b-button>
         </b-col>
         <b-col v-if="seat2">
           <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>2</b-button>
         </b-col>
         <b-col v-else>
-          <b-button variant="outline-success" v-on:click="addSeat('2')" class="btn-circle-flat">2</b-button>
+          <b-button variant="outline-success" @click="addSeat('2')" class="btn-circle-flat">2</b-button>
         </b-col>
         <b-col v-if="seat3">
           <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>3</b-button>
         </b-col>
         <b-col v-else>
-          <b-button variant="outline-success" v-on:click="addSeat('3')" class="btn-circle-flat">3</b-button>
+          <b-button variant="outline-success" @click="addSeat('3')" class="btn-circle-flat">3</b-button>
         </b-col>
         <b-col v-if="seat4">
           <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>4</b-button>
         </b-col>
         <b-col v-else>
-          <b-button variant="outline-success" v-on:click="addSeat('4')" class="btn-circle-flat">4</b-button>
+          <b-button variant="outline-success" @click="addSeat('4')" class="btn-circle-flat">4</b-button>
         </b-col>
       </b-row>
       <b-row class="desk">
