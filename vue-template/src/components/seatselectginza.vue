@@ -1,6 +1,6 @@
 <template>
   <div class="office">
-    <h1 :office="office" v-if="office==='ginza'">希望の座席を選んでください@銀座</h1>
+    <h1 v-if="office==='ginza'">希望の座席を選んでください@銀座</h1>
     <h1 v-if="office==='marunouti'">希望の座席を選んでください@丸ノ内</h1>
     <b-container>
       <b-row>

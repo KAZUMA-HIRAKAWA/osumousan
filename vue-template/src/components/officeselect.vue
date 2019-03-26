@@ -15,7 +15,7 @@
       </b-form-group>
     </b-container>
     <b-container>
-      <b-button variant="right" size="lg" v-on:click="routing()">
+      <b-button variant="right" size="lg" @click="routing()">
         <font-awesome-icon icon="hand-point-right"/>
       </b-button>
     </b-container>
