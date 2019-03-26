@@ -26,23 +26,23 @@
 import axiosBase from "axios";
 let axios;
 export default {
-  name: "HelloWorld",
+  name: "office",
   data() {
     return {
       seat: "",
       office: "",
       options: [
         { text: "銀座", value: "ginza" },
-        { text: "丸ノ内", value: "maru" }
+        { text: "丸ノ内", value: "marunouti" }
       ]
     };
   },
   methods: {
     routing: function() {
-      if(this.$data.office=='ginza'){
-      this.$router.push('/ginza');
-      }else if(this.$data.office==='maru'){
-        this.$router.push('/maru');
+      if (this.$data.office == "ginza") {
+        this.$router.push("/ginza");
+      } else if (this.$data.office === "marunouti") {
+        this.$router.push("/maru");
       }
     }
   }

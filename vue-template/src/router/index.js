@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import office from '@/components/officeselect'
 import ginza from '@/components/seatselectginza'
 import maru from '@/components/seatselectmaru'
+import register from '@/components/register'
 
 Vue.use(Router)
 
@@ -23,5 +24,10 @@ export default new Router({
       name: 'maru',
       component: maru
     },
+    {
+      path: '/register',
+      name: 'register',
+      component: register
+    }
   ]
 })

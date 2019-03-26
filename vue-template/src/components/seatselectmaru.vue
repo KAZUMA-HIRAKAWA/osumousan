@@ -51,7 +51,6 @@
 
 <script>
 import axiosBase from "axios";
-import { constants } from 'fs';
 let axios;
 
 export default {
@@ -65,7 +64,7 @@ export default {
       seat1: "",
       seat2: "",
       seat3: "",
-      seat4: "",
+      seat4: ""
     };
   },
   async mounted() {
@@ -99,7 +98,7 @@ export default {
     this.seat2 = seat2;
     this.seat3 = seat3;
     this.seat4 = seat4;
-    console.log('seat1',this.seat1,'seat4',this.seat4);
+    console.log("seat1", this.seat1, "seat4", this.seat4);
   }
 };
 </script>

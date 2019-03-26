@@ -1,48 +1,93 @@
 <template>
   <div class="office">
-    <h1>希望の座席を選んでください@銀座</h1>
+    <h1 :office="office" v-if="office==='ginza'">希望の座席を選んでください@銀座</h1>
+    <h1 v-if="office==='marunouti'">希望の座席を選んでください@丸ノ内</h1>
     <b-container>
       <b-row>
         <b-col v-if="seat1">
-          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>1</b-button>
+          <b-button
+            variant="outline-success"
+            @click="referSeat(seat1)"
+            class="btn-circle-flat reserved"
+          >1</b-button>
         </b-col>
         <b-col v-else>
-          <b-button variant="outline-success" @click="addSeat('1')" class="btn-circle-flat">1</b-button>
+          <b-button variant="outline-success" @click="addSeat(1)" class="btn-circle-flat">1</b-button>
         </b-col>
         <b-col v-if="seat2">
-          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>2</b-button>
+          <b-button
+            variant="outline-success"
+            @click="referSeat(seat2)"
+            class="btn-circle-flat reserved"
+          >2</b-button>
         </b-col>
         <b-col v-else>
-          <b-button variant="outline-success" @click="addSeat('2')" class="btn-circle-flat">2</b-button>
+          <b-button variant="outline-success" @click="addSeat(2)" class="btn-circle-flat">2</b-button>
         </b-col>
         <b-col v-if="seat3">
-          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>3</b-button>
+          <b-button
+            variant="outline-success"
+            @click="referSeat(seat3)"
+            class="btn-circle-flat reserved"
+          >3</b-button>
         </b-col>
         <b-col v-else>
-          <b-button variant="outline-success" @click="addSeat('3')" class="btn-circle-flat">3</b-button>
+          <b-button variant="outline-success" @click="addSeat(3)" class="btn-circle-flat">3</b-button>
         </b-col>
         <b-col v-if="seat4">
-          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>4</b-button>
+          <b-button
+            variant="outline-success"
+            @click="referSeat(seat4)"
+            class="btn-circle-flat reserved"
+          >4</b-button>
         </b-col>
         <b-col v-else>
-          <b-button variant="outline-success" @click="addSeat('4')" class="btn-circle-flat">4</b-button>
+          <b-button variant="outline-success" @click="addSeat(4)" class="btn-circle-flat">4</b-button>
         </b-col>
       </b-row>
       <b-row class="desk">
         <b-col col>机</b-col>
       </b-row>
       <b-row>
-        <b-col>
-          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>5</b-button>
+        <b-col v-if="seat5">
+          <b-button
+            variant="outline-success"
+            @click="referSeat(seat5)"
+            class="btn-circle-flat reserved"
+          >5</b-button>
         </b-col>
-        <b-col>
-          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>6</b-button>
+        <b-col v-else>
+          <b-button variant="outline-success" @click="addSeat(5)" class="btn-circle-flat">5</b-button>
         </b-col>
-        <b-col>
-          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>7</b-button>
+        <b-col v-if="seat6">
+          <b-button
+            variant="outline-success"
+            @click="referSeat(seat6)"
+            class="btn-circle-flat reserved"
+          >6</b-button>
         </b-col>
-        <b-col>
-          <b-button variant="outline-success" class="btn-circle-flat reserved" disabled>8</b-button>
+        <b-col v-else>
+          <b-button variant="outline-success" @click="addSeat(6)" class="btn-circle-flat">6</b-button>
+        </b-col>
+        <b-col v-if="seat7">
+          <b-button
+            variant="outline-success"
+            @click="referSeat(seat7)"
+            class="btn-circle-flat reserved"
+          >7</b-button>
+        </b-col>
+        <b-col v-else>
+          <b-button variant="outline-success" @click="addSeat(7)" class="btn-circle-flat">7</b-button>
+        </b-col>
+        <b-col v-if="seat8">
+          <b-button
+            variant="outline-success"
+            @click="referSeat(seat8)"
+            class="btn-circle-flat reserved"
+          >8</b-button>
+        </b-col>
+        <b-col v-else>
+          <b-button variant="outline-success" @click="addSeat(8)" class="btn-circle-flat">8</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -51,7 +96,6 @@
 
 <script>
 import axiosBase from "axios";
-import { constants } from 'fs';
 let axios;
 
 export default {
@@ -60,12 +104,22 @@ export default {
     "Content-Type": "application/json;charset=UTF-8",
     "Access-Control-Allow-Origin": "*"
   },
+  props: {
+    office: {
+      Type: String,
+      default: ""
+    }
+  },
   data() {
     return {
       seat1: "",
       seat2: "",
       seat3: "",
       seat4: "",
+      seat5: "",
+      seat6: "",
+      seat7: "",
+      seat8: ""
     };
   },
   async mounted() {
@@ -82,16 +136,28 @@ export default {
     let seat2;
     let seat3;
     let seat4;
+    let seat5;
+    let seat6;
+    let seat7;
+    let seat8;
 
     params.data.Items.forEach(function(value) {
-      if (value.date_position.split('_')[1] === "1") {
+      if (value.date_position.split("_")[1] === "1") {
         seat1 = value;
-      } else if (value.date_position.split('_')[1] === "2") {
+      } else if (value.date_position.split("_")[1] === "2") {
         seat2 = value;
-      } else if (value.date_position.split('_')[1] === "3") {
+      } else if (value.date_position.split("_")[1] === "3") {
         seat3 = value;
-      } else if (value.date_position.split('_')[1] === "4") {
+      } else if (value.date_position.split("_")[1] === "4") {
         seat4 = value;
+      } else if (value.date_position.split("_")[1] === "5") {
+        seat5 = value;
+      } else if (value.date_position.split("_")[1] === "6") {
+        seat6 = value;
+      } else if (value.date_position.split("_")[1] === "7") {
+        seat7 = value;
+      } else if (value.date_position.split("_")[1] === "8") {
+        seat8 = value;
       }
     });
 
@@ -99,10 +165,21 @@ export default {
     this.seat2 = seat2;
     this.seat3 = seat3;
     this.seat4 = seat4;
-    console.log('seat1',this.seat1,'seat4',this.seat4);
+    this.seat5 = seat5;
+    this.seat6 = seat6;
+    this.seat7 = seat7;
+    this.seat8 = seat8;
   },
-  addSeat(position){
-    alert('座席を予約しますか？');
+  methods: {
+    addSeat(position) {
+      if (window.confirm(`${position}の席を予約しますか？`)) {
+        // ここで場所予約の画面に進む
+        this.$router.push("/register");
+      }
+    },
+    referSeat(seat) {
+      alert(`予約者名：${seat.name}`);
+    }
   }
 };
 </script>
