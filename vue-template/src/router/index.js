@@ -4,6 +4,7 @@ import office from '@/components/officeselect'
 import ginza from '@/components/seatselectginza'
 import maru from '@/components/seatselectmaru'
 import register from '@/components/register'
+import complete from '@/components/complete'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: register
+    },
+    {
+      path: '/complete',
+      name: 'complete',
+      component: complete
     }
   ]
 })

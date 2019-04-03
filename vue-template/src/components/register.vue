@@ -2,7 +2,10 @@
   <div class="office">
     <h1>座席予約</h1>
     <b-container>
-      ここにテキストボックス
+      <b-input v-model="name" placeholder="氏名"></b-input>
+      <b-input v-model="position" placeholder="場所（仮）"></b-input>
+      <div></div>
+      <b-button @click="register(name,position)">登録</b-button>
     </b-container>
   </div>
 </template>
@@ -14,16 +17,31 @@ export default {
   name: "HelloWorld",
   data() {
     return {
-      seat: "",
-      office: "",
+      name: "",
+      position: ""
     };
   },
+  async mounted() {
+    axios = axiosBase.create({
+      baseURL:
+        "https://3k020kklx6.execute-api.ap-northeast-1.amazonaws.com/test",
+      timeout: 35000,
+      headers: {}
+    });
+  },
+
   methods: {
-    routing: function() {
-      if(this.$data.office=='ginza'){
-      this.$router.push('/ginza');
-      }else if(this.$data.office==='maru'){
-        this.$router.push('/maru');
+    async register(name,position) {
+      try{
+      if (window.confirm(`登録しますか？`)) {
+        await axios.put(`/`, {
+          name:name,
+          position:position,
+          });
+          this.$router.push('/complete');
+      }
+      }catch(e){
+        return;
       }
     }
   }
