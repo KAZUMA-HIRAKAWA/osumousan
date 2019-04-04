@@ -127,9 +127,9 @@ export default {
 
     let params;
     if(this.$store.state.office === 'ginza'){
-      params = await axios.get(`/`);
+      params = await axios.get(`/ginza`);
     }else if (this.$store.state.office === 'marunouti'){
-      params = await axios.get(`/`);
+      params = await axios.get(`/marunouti`);
     }
 
     let seat1;
