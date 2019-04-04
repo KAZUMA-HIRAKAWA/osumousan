@@ -45,7 +45,7 @@ export default {
       } else if (this.$data.office === "marunouti") {
         this.$store.state.office = 'marunouti'
       }
-      this.$router.push("/ginza");
+      this.$router.push("/office");
     }
   }
 };

@@ -126,9 +126,9 @@ export default {
     });
 
     let params;
-    if(this.$store.state.offce === 'ginza'){
+    if(this.$store.state.office === 'ginza'){
       params = await axios.get(`/`);
-    }else if (this.$store.state.offce === 'marunouti'){
+    }else if (this.$store.state.office === 'marunouti'){
       params = await axios.get(`/`);
     }
 

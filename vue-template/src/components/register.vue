@@ -33,10 +33,17 @@ export default {
     async register(name) {
       try{
       if (window.confirm(`登録しますか？`)) {
-        await axios.put(`/`, {
-          name: name,
-          position: this.$store.state.position,
+        if(this.$store.state.office === 'ginza'){
+          await axios.put(`/ginza`, {
+            name: name,
+            position: this.$store.state.position,
           });
+        } else if (this.$store.state.office === 'marunouti'){
+          await axios.put(`/marunouti`, {
+            name: name,
+            position: this.$store.state.position,
+          });
+        }
           this.$router.push('/complete');
       }
       }catch(e){
