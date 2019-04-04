@@ -3,14 +3,14 @@
     <h1>座席予約</h1>
     <b-container>
       <b-input v-model="name" placeholder="氏名"></b-input>
-      <b-input v-model="position" placeholder="場所（仮）"></b-input>
       <div></div>
-      <b-button @click="register(name,position)">登録</b-button>
+      <b-button @click="register(name)">登録</b-button>
     </b-container>
   </div>
 </template>
 
 <script>
+import store from '@/store.js';
 import axiosBase from "axios";
 let axios;
 export default {
@@ -18,7 +18,6 @@ export default {
   data() {
     return {
       name: "",
-      position: ""
     };
   },
   async mounted() {
@@ -31,12 +30,12 @@ export default {
   },
 
   methods: {
-    async register(name,position) {
+    async register(name) {
       try{
       if (window.confirm(`登録しますか？`)) {
         await axios.put(`/`, {
-          name:name,
-          position:position,
+          name: name,
+          position: this.$store.state.position,
           });
           this.$router.push('/complete');
       }

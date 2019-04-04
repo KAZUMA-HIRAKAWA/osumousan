@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import store from '@/store.js';
 import axiosBase from "axios";
 let axios;
 export default {
@@ -40,10 +41,11 @@ export default {
   methods: {
     routing: function() {
       if (this.$data.office == "ginza") {
-        this.$router.push("/ginza");
+        this.$store.state.office = 'ginza'
       } else if (this.$data.office === "marunouti") {
-        this.$router.push("/maru");
+        this.$store.state.office = 'marunouti'
       }
+      this.$router.push("/ginza");
     }
   }
 };

@@ -12,6 +12,7 @@
 
 <script>
 import axiosBase from "axios";
+import store from '@/store.js';
 let axios;
 export default {
   name: "office",

@@ -6,9 +6,16 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHandPointRight } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import store from './store'
+import {
+  library
+} from '@fortawesome/fontawesome-svg-core'
+import {
+  faHandPointRight
+} from '@fortawesome/free-solid-svg-icons'
+import {
+  FontAwesomeIcon
+} from '@fortawesome/vue-fontawesome'
 
 library.add(faHandPointRight)
 
@@ -21,7 +28,10 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 })

@@ -1,7 +1,7 @@
 <template>
   <div class="office">
-    <h1 v-if="office==='ginza'">希望の座席を選んでください@銀座</h1>
-    <h1 v-if="office==='marunouti'">希望の座席を選んでください@丸ノ内</h1>
+    <h1 v-if="this.$store.state.office ==='ginza'">希望の座席を選んでください@銀座</h1>
+    <h1 v-if="this.$store.state.office ==='marunouti'">希望の座席を選んでください@丸ノ内</h1>
     <b-container>
       <b-row>
         <b-col v-if="seat1">
@@ -95,6 +95,7 @@
 </template>
 
 <script>
+import store from '@/store.js';
 import axiosBase from "axios";
 let axios;
 
@@ -103,12 +104,6 @@ export default {
   headers: {
     "Content-Type": "application/json;charset=UTF-8",
     "Access-Control-Allow-Origin": "*"
-  },
-  props: {
-    office: {
-      Type: String,
-      default: ""
-    }
   },
   data() {
     return {
@@ -130,7 +125,12 @@ export default {
       headers: {}
     });
 
-    const params = await axios.get(`/`);
+    let params;
+    if(this.$store.state.offce === 'ginza'){
+      params = await axios.get(`/`);
+    }else if (this.$store.state.offce === 'marunouti'){
+      params = await axios.get(`/`);
+    }
 
     let seat1;
     let seat2;
@@ -142,21 +142,21 @@ export default {
     let seat8;
 
     params.data.Items.forEach(function(value) {
-      if (value.date_position.split("_")[1] === "1") {
+      if (value.position === "1") {
         seat1 = value;
-      } else if (value.date_position.split("_")[1] === "2") {
+      } else if (value.position === "2") {
         seat2 = value;
-      } else if (value.date_position.split("_")[1] === "3") {
+      } else if (value.position === "3") {
         seat3 = value;
-      } else if (value.date_position.split("_")[1] === "4") {
+      } else if (value.position === "4") {
         seat4 = value;
-      } else if (value.date_position.split("_")[1] === "5") {
+      } else if (value.position === "5") {
         seat5 = value;
-      } else if (value.date_position.split("_")[1] === "6") {
+      } else if (value.position === "6") {
         seat6 = value;
-      } else if (value.date_position.split("_")[1] === "7") {
+      } else if (value.position === "7") {
         seat7 = value;
-      } else if (value.date_position.split("_")[1] === "8") {
+      } else if (value.position === "8") {
         seat8 = value;
       }
     });
@@ -174,6 +174,7 @@ export default {
     addSeat(position) {
       if (window.confirm(`${position}の席を予約しますか？`)) {
         // ここで場所予約の画面に進む
+        this.$store.state.position = position;
         this.$router.push("/register");
       }
     },
