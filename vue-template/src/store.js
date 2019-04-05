@@ -7,7 +7,9 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     office: '',
-    position: ''
+    position: '',
+    lineId: '',
+    utouId: ''
   },
   mutations: {
     setOffice (state, officeName) {

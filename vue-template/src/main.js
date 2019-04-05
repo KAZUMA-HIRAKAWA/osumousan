@@ -26,12 +26,23 @@ Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  store,
-  router,
-  components: {
-    App
-  },
-  template: '<App/>'
-})
+// LIFF初期化
+// eslint-disable-next-line
+liff.init(
+  data => {
+    const lineId = data.context.userId
+    const utouId = data.context.utouId
+
+    store.lineId = lineId
+    store.utouId = utouId
+    new Vue({
+      el: '#app',
+      store,
+      router,
+      components: {
+        App
+      },
+      template: '<App/>'
+    })
+  }
+)
