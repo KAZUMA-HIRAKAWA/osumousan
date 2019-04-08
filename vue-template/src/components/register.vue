@@ -27,6 +27,9 @@ export default {
       timeout: 35000,
       headers: {}
     });
+    window.liff.init(data => {
+      this.lineId = data.context.userId || null
+    })
   },
 
   methods: {
