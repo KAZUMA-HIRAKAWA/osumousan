@@ -23,32 +23,29 @@
 </template>
 
 <script>
-import store from '@/store.js';
-import axiosBase from "axios";
-let axios;
 export default {
-  name: "office",
-  data() {
+  name: 'office',
+  data () {
     return {
-      seat: "",
-      office: "",
+      seat: '',
+      office: '',
       options: [
-        { text: "銀座", value: "ginza" },
-        { text: "丸ノ内", value: "marunouti" }
+        { text: '銀座', value: 'ginza' },
+        { text: '丸ノ内', value: 'marunouti' }
       ]
-    };
+    }
   },
   methods: {
-    routing: function() {
-      if (this.$data.office == "ginza") {
+    routing: function () {
+      if (this.$data.office == 'ginza') {
         this.$store.state.office = 'ginza'
-      } else if (this.$data.office === "marunouti") {
+      } else if (this.$data.office === 'marunouti') {
         this.$store.state.office = 'marunouti'
       }
-      this.$router.push("/office");
+      this.$router.push('/office')
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

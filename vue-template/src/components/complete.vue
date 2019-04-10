@@ -11,21 +11,18 @@
 </template>
 
 <script>
-import axiosBase from "axios";
-import store from '@/store.js';
-let axios;
 export default {
-  name: "office",
-  data() {
+  name: 'office',
+  data () {
     return {
-    };
+    }
   },
   methods: {
-    top(){
-      this.$router.push('/');
+    top () {
+      this.$router.push('/')
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -3,58 +3,57 @@
     <h1>座席予約</h1>
     <b-container>
       <b-input v-model="name" placeholder="氏名"></b-input>
-      <div></div>
       <b-button @click="register(name)">登録</b-button>
     </b-container>
   </div>
 </template>
 
 <script>
-import store from '@/store.js';
-import axiosBase from "axios";
-let axios;
+import store from '@/store.js'
+import axiosBase from 'axios'
+let axios
 export default {
-  name: "HelloWorld",
-  data() {
+  name: 'HelloWorld',
+  data () {
     return {
-      name: "",
-    };
+      name: ''
+    }
   },
-  async mounted() {
+  async mounted () {
     axios = axiosBase.create({
       baseURL:
-        "https://3k020kklx6.execute-api.ap-northeast-1.amazonaws.com/test",
+        'https://3k020kklx6.execute-api.ap-northeast-1.amazonaws.com/test',
       timeout: 35000,
       headers: {}
-    });
+    })
     window.liff.init(data => {
       this.lineId = data.context.userId || null
     })
   },
 
   methods: {
-    async register(name) {
-      try{
-      if (window.confirm(`登録しますか？`)) {
-        if(this.$store.state.office === 'ginza'){
-          await axios.put(`/ginza`, {
-            name: name,
-            position: this.$store.state.position,
-          });
-        } else if (this.$store.state.office === 'marunouti'){
-          await axios.put(`/marunouti`, {
-            name: name,
-            position: this.$store.state.position,
-          });
+    async register (name) {
+      try {
+        if (window.confirm(`登録しますか？`)) {
+          if (this.$store.state.office === 'ginza') {
+            await axios.put(`/ginza`, {
+              name: name,
+              position: this.$store.state.position
+            })
+          } else if (this.$store.state.office === 'marunouti') {
+            await axios.put(`/marunouti`, {
+              name: name,
+              position: this.$store.state.position
+            })
+          }
+          this.$router.push('/complete')
         }
-          this.$router.push('/complete');
-      }
-      }catch(e){
-        return;
+      } catch (e) {
+
       }
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -62,6 +61,11 @@ export default {
 h1,
 h2 {
   font-weight: normal;
+}
+
+input {
+  width: 80%;
+  margin: 15% 10% 15%;
 }
 
 #btnradios {
